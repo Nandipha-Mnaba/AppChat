@@ -47,3 +47,44 @@ public class Messages {
         String lastword  +words[words.length - 1].replaceAll("[^a-zA-Z0-9","");
         return (idPrefix +":" + messageNumber +":" + firstWord +lastword) > toUpperCase ();
 }
+ //method 4 sentMessage 
+    //sllows the user to send , disregard , or store message 
+    
+public String sentMessage (int choice ){
+    switch(choice){
+        case 1 : resturn "Message successfully sent";
+        case 2 : return "Press 0 to delet the message ";
+        case 3 :Message "successfully stored";
+        default: return "Ivalid option";
+    }
+}
+//Method 5 print-Message ()
+// return this message's details in the required display order:
+//message ID message hash , Recipient , Message 
+public String printMessage (){
+return "Message ID :"   + messageID  + "\n"   +
+        "Message Hash:" + messageHash + "\n"  +
+        "Recipient: "   + recipient   +"\n "  +
+        "Message :"     + messageText +"\n "  +
+        "_______";
+}
+
+//method 6 -returntotalmessage (int currentTotal )
+//Adds 1 to the running total maintained by MessageMnagaer .
+
+public int returnTotalMessages(int currentTotal){
+    return currentTotal + 1 ;
+}
+
+//method 7 - storeMessage ()[research feature ]
+//serialises this message to a JSON- FORMATTED STRING 
+public String storeMessage(){
+    return "{\n"+
+            " \"mesageID\":\""   +messageID       +"\",n" +
+            "\"messageNumber\":" +messageNumber  + ",\n" +
+            "\"recipient \": \"" + recipient     +"\",\n"+
+            "\"message \": \""   + messageText   +"\",\n" +
+            "\"messageHash\":\""   +messageHash    +"\"\n" +
+                    "}";
+}
+}
