@@ -9,7 +9,8 @@ import java.util.Random;
  */
 public class Messages {
     private String messageID;
-    private int messageNumber;
+    private int    messageNumber;
+    private String recipient ;
     private String messageText;
     private String messageHash;
     
@@ -21,6 +22,18 @@ public class Messages {
         this.messageID     = generateMessageID();
         this.messageHash   =createMessageHash();
     }
-    
-    
+    private String generateMessageID(){
+        Random rand = new Random();
+        long id = (long)(rand.nextDouble()* 9_000_000_000L)+ 1_000_000_000L;
+        return String.valueOf(id);
+                
+    }
+    public boolean checkMessage(){
+        return messageID.length() < 10;
+    } 
+    public String checkRecipientell(){
+        if (!recipient.startsWith("=")|| recipient.length()> 10){
+            return "Cell phone number is incorrectly formatted or does not contain an international code. Please correct the number and try again.";
+        }
+    }
 }
