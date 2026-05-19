@@ -46,7 +46,23 @@ public class AppChat {
         boolean status = user.authenticateUser(loginUser, loginPass);
 
         System.out.println(user.loginStatus(status));
+        
+        //welcome
+System.out.println("nwelcome to AppChat.");
+
+ // Number of messages 
+ System.out.println("How Many messages do you wish to send ?")
+
+
+
+
+
+
+
+
 
         input.close();
     }
+ 
+  
 }
