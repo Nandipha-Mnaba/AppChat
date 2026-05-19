@@ -51,7 +51,42 @@ public class AppChat {
 System.out.println("nwelcome to AppChat.");
 
  // Number of messages 
- System.out.println("How Many messages do you wish to send ?")
+ System.out.println("How Many messages do you wish to send ?");
+ int numMessages = integer.parseInt(scanner.nextline(). trim());
+ 
+ //----create MessageMnagager 
+ MessageManager manager = new Messagemanager (Scanner);
+ 
+ //main Menu loop 
+ boolean running = true 
+         while (running){
+             System.out.println ("\n--- Menu ----");
+             System.out.println("1) Send messages ");
+             System.out.println("2) show recently sent messages ");
+             System.out.println("3)Quit");
+             System.out.println ("Choose an option ");
+             String choice = scanner.nextLine().trim();
+             
+             
+              switch (choice){
+                  case "1":
+                      manager.handlSendMessages(numMessages);
+                      break ;
+                  case "2"  :
+                      System.out.println("Coming Soon.");
+                      break;
+                  case"3":
+                      running = false ;
+                      System.out.println("Goodbye!");
+                      break;
+                  default:
+                      System.out.println("Invalid option . Please try again ");
+              }
+         }
+         System.out.println("total messages sent:" + manager .getTotalSentCount());
+         scanner.close();
+  }
+}
 
 
 
