@@ -31,12 +31,25 @@ public class Messages {
     public boolean checkMessage(){
         return messageID.length() < 10;
     } 
-    public String checkRecipientell(){
-        if (!recipient.startsWith("=")|| recipient.length()> 10){
-            return "Cell phone number is incorrectly formatted or does not contain an international code. Please correct the number and try again.";
+    
+        // Check message length (<= 250)
+    public String checkMessageLength() {
+        int length = messageText.length();
+        if (length <= 250) {
+            return "Message ready to send.";
+        } else {
+            int excess = length - 250;
+            return "Message exceeds 250 characters by " + excess + "; please reduce the size.";
         }
-        return "Cell phone number successfully captured.";
     }
+    
+  public String checkRecipientCell() {
+    //  (+27 followed by 9 digits)
+    if (!recipient.startsWith("+27") || recipient.length() != 12) {
+        return "Cell phone number is incorrectly formatted or does not contain an international code. Please correct the number and try again.";
+    }
+    return "Cell phone number successfully captured.";
+}
     //method 3 creatye a message hash 
     // it build s (first 2 didigits of ID) :( messageNumber : FIRSTWORDLASTWORD)
    // E.G 00:HITOGNIGHT
