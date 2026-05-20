@@ -15,10 +15,10 @@ public class Messages {
     private String messageHash;
     
     // constructor
-    public Message (int messageNumber , String recipient, String messageText){
-        this.messageNumber = messsageNumber;
-        this.recipient     = recipient
-        this.messageText   = meseageText ;
+    public Messages (int messageNumber , String recipient, String messageText){
+        this.messageNumber = messageNumber;
+        this.recipient     = recipient;
+        this.messageText   = messageText ;
         this.messageID     = generateMessageID();
         this.messageHash   =createMessageHash();
     }
@@ -44,18 +44,22 @@ public class Messages {
         String idPrefix  = messageID.substring(0,2);
         String [] words  =messageText.trim().split("\\s+");
         String firstWord =words[0];
-        String lastword  +words[words.length - 1].replaceAll("[^a-zA-Z0-9","");
-        return (idPrefix +":" + messageNumber +":" + firstWord +lastword) > toUpperCase ();
+        String lastWord  =words[words.length - 1].replaceAll("[^a-zA-Z0-9]","");
+        return (idPrefix +":" + messageNumber +":" + firstWord +lastWord).toUpperCase ();
 }
  //method 4 sentMessage 
     //sllows the user to send , disregard , or store message 
     
 public String sentMessage (int choice ){
     switch(choice){
-        case 1 : resturn "Message successfully sent";
-        case 2 : return "Press 0 to delet the message ";
-        case 3 :Message "successfully stored";
-        default: return "Ivalid option";
+        case 1 : 
+            return "Message successfully sent";
+        case 2 :
+           return "Press 0 to delet the message ";
+        case 3 :
+            return "Message successfully stored";
+        default: 
+            return "Invalid option";
     }
 }
 //Method 5 print-Message ()
