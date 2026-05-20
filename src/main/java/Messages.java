@@ -95,15 +95,15 @@ public int returnTotalMessages(int currentTotal){
 
 //method 7 - storeMessage ()[research feature ]
 //serialises this message to a JSON- FORMATTED STRING 
-public String storeMessage(){
-    return "{\n"+
-            " \"mesageID\":\""   +messageID       +"\",n" +
-            "\"messageNumber\":" +messageNumber  + ",\n" +
-            "\"recipient \": \"" + recipient     +"\",\n"+
-            "\"message \": \""   + messageText   +"\",\n" +
-            "\"messageHash\":\""   +messageHash    +"\"\n" +
-                    "}";
-}
+ public String storeMessage() {
+        return "{\n" +
+               "  \"messageID\":\"" + messageID + "\",\n" +
+               "  \"messageNumber\":" + messageNumber + ",\n" +
+               "  \"recipient\":\"" + recipient + "\",\n" +
+               "  \"message\":\"" + messageText + "\",\n" +
+               "  \"messageHash\":\"" + messageHash + "\"\n" +
+               "}";
+    }
 //Getters
 public String getMessageID() { return messageID; }
  public int getMessageNumber (){return messageNumber ;}
