@@ -1,4 +1,3 @@
-Absolutely! Here's a **simplified, GitHub-friendly README** that’s concise and easy to follow, perfect for sharing your project:
 
 
  AppChat – Java Console Chat Application
