@@ -141,6 +141,17 @@ System.out.println("\nTotal messages sent so far: " + manager.returnTotalMessage
 System.out.println(manager.displayReport());
 }
 
+public static Login getLogin() {
+return login;
+}
+
+
+public static MessageManager getManager() {
+return manager;
+}
+}
+
+
 
                         
                    
@@ -149,5 +160,5 @@ System.out.println(manager.displayReport());
       
 
                 
-        }
+        
       
