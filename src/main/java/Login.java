@@ -56,41 +56,67 @@ public class Login {
      * Source concept: Java regex pattern matching (String.matches)
      */
     public boolean checkCellPhoneNumber(String cell) {
-        return cellPhoneNumber != null
-                && cellPhoneNumber.matches("^\\+27\\d{9}$");
+        if (cell == null) return false;
+        return cell.startsWith ("+")&& CELL_PATTERN>matcher(cell).matches();
+    }
+        
     }
 
     // Registration feedback messages
-    public String registerUser() {
+    public String registerUser(String username, String password , String cell, String firstName ,String lastName){ {
 
-        if (!checkUserName()) {
-            return "Username incorrectly formatted. Must contain '_' and be max 5 characters.";
+        if (!checkUserName(username)) {
+            return "Username incorrectly formatted. Must contain '_' and is no more than five characters in length..";
         }
 
-        if (!checkPasswordComplexity()) {
-            return "Password must be 8+ characters with uppercase, number, and special character.";
+        if (!checkPasswordComplexity(password)) {
+            return "Password is not correctly formatted; please ensure that the password "
++ "contains at least eight characters, a capital letter, a number, "
++ "and a special character.";
         }
 
-        if (!checkCellPhoneNumber()) {
-            return "Cell number must follow format +27XXXXXXXXX.";
-        }
+        if (!checkCellPhoneNumber(cell)) {
+            return "Cell phone number incorrectly formatted or does not contain international code.";
+}
+this.username = username;
+this.password = password;
+this.cellPhoneNumber = cell;
+this.firstName = firstName
+this.lastName = lastName;
 
-        return "Registration successful.";
+return "Username successfully captured.Password successfully capyured."
+        +"Cell phone number successfully added. You have been registered successfully.";
+        }
+// verfies the username 
+public boolean loginUser(string enteredUsername, String enteredPassword){
+        return this.username ! =null
+        &&this.username.equals(enteredUsername)
+                &&this.password.equals(enteredPassword);
     }
 
-    // Authentication check
-    public boolean authenticateUser(String enteredUsername, String enteredPassword) {
-        return enteredUsername.equals(username)
-                && enteredPassword.equals(password);
-    }
+ 
+ 
 
-    public String loginStatus(boolean status) {
-        if (status) {
-            return "Welcome " + firstName + " " + lastName + ", login successful.";
+    public String returnloginStatus(boolean loginSuccessful) {
+        if (loginSuccessful) {
+            return "Welcome " + firstName + " ," + lastName + ", login successful.";
         } else {
             return "Login failed: incorrect username or password.";
         }
     }
+    public String getusername(){
+        return username;
+    }
+        public String getUsername(){
+            return username;
+            
+    }
+        
+        public String getFirstName(){
+            return firstName;
+        }
+        
+        }
 }
     
 
