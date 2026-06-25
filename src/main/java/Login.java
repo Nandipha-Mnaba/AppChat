@@ -15,7 +15,8 @@ public class Login {
     private String firstName;
     private String lastName;
     
-    public static final Pattern CELL_PATTERN =Pattern.complie("^\\+\\d{1,3}\\d{6,9}#$");
+public static final Pattern CELL_PATTERN =
+            Pattern.compile("^\\+\\d{10,12}$");
 
     public Login(String firstName, String lastName)
                  {
@@ -27,15 +28,19 @@ public class Login {
     
 
     // Username must contain "_" and be no more than 5 characters
-    public boolean checkUserName(String username) {
-        if username == null)return false;
+     public boolean checkUserName(String username) {
+
+        if (username == null) {
+            return false;
         return username.contains("_")&& username.length()<=5;
     }
 
     // Password complexity rules
     public boolean checkPasswordComplexity(String password) {
-        if (password == null || password.length() < 8) return false;
 
+        if (password == null || password.length() < 8) {
+            return false;
+        }
    boolean hasCapital = false;
    boolean hasNumber= false;
    boolean hasSpecial = false;
@@ -123,6 +128,6 @@ public boolean loginUser(string enteredUsername, String enteredPassword){
         }
 
 
-}
+
     
 

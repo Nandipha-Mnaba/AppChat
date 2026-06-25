@@ -94,12 +94,12 @@ public String checkRecipientCell (){
         
         //getters / setters 
         
-        public String getMessageld(){
-            return messageld;
+        public String getMessageID(){
+            return messageID;
             
     }
         public void setMessageld(String messageld){
-            this.messageld = messageld;
+            this.messageID = messageld;
         }
         public int getMessageNumber(){
             return messageNumber;
@@ -135,11 +135,11 @@ public String checkRecipientCell (){
         public static void resetcounter(){
             messageCounter =0;
         }
-         public String toString(){
-             return"Message ID;"+ messageld
-              + "\nMessage Hash: " + getMessageHash()
-+ "\nRecipient: " + recipient
-+ "\nMessage: " + messageText;
+         public String toString (){
+            return "Message ID: " + messageID
+        + "\nMessage Hash: " + getMessageHash()
+        + "\nRecipient: " + recipient
+        + "\nMessage: " + messageText;
 }
 } 
        
