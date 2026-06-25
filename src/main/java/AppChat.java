@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-
+import java.util.List;
 import java.util.Scanner;
 /**
  *
@@ -10,114 +10,144 @@ import java.util.Scanner;
  */
 public class AppChat {
 
-  public static void main(String[] args) {
+private staic Login login = new Login();
+private staic Messagemanager manager = newMessagemanager();
+private static Scanner scanner = new Scanner(System.in);
+
+public static void main(String[]args){
+    
 
         Scanner input = new Scanner(System.in);
 
         System.out.println("=== Chat Application ===");
 
-        // User registration
-        System.out.print("First name: ");
-        String firstName = input.nextLine();
+        // User
+       System.out.print("Enter first name: ");
+String firstName = scanner.nextLine();
+System.out.print("Enter last name: ");
+String lastName = scanner.nextLine();
+System.out.print("Enter a username (must contain '_' and be <= 5 chars): ");
+String username = scanner.nextLine();
+System.out.print("Enter a password (8+ chars, capital, number, special char): ");
+String password = scanner.nextLine();
+System.out.print("Enter your SA cell number (e.g. +27838968976): ");
+String cell = scanner.nextLine();
 
-        System.out.print("Last name: ");
-        String lastName = input.nextLine();
 
-        System.out.print("Username: ");
-        String username = input.nextLine();
+String registrationResult = login.registerUser(username, password, cell, firstName, lastName);
+System.out.println(registrationResult);
 
-        System.out.print("Password: ");
-        String password = input.nextLine();
+if (!registrationResult.contains("registered successfully")) {
+System.out.println("Registration failed. Exiting.");
+return;
+}
 
-        System.out.print("Cell number (+27...): ");
-        String cell = input.nextLine();
+     System.out.println("\n=== Login ===");
+System.out.print("Username: ");
+String loginUsername = scanner.nextLine();
+System.out.print("Password: ");
+String loginPassword = scanner.nextLine();
 
-        Login user = new Login(username, password, cell, firstName, lastName);
+boolean loggedln = login.loginUser(loginusername, loginPassword);
+System.out.println(login.returnLoginStatus(loggedln));
 
-        System.out.println("\n" + user.registerUser());
-
-        System.out.println("\n--- Login ---");
-        System.out.print("Enter username: ");
-        String loginUser = input.nextLine();
-
-        System.out.print("Enter password: ");
-        String loginPass = input.nextLine();
-
-        boolean status = user.authenticateUser(loginUser, loginPass);
-
-        System.out.println(user.loginStatus(status));
-
-        System.out.println("\nWelcome to AppChat.");
-
-        // Ask how many messages the user wants to send
-        System.out.print("How many messages do you wish to send? ");
-        int numMessages = Integer.parseInt(input.nextLine().trim());
-
-        // MessageManager
-        MessageManager manager = new MessageManager(input);
-
-        // Menu loop
-        boolean running = true;
-        String sentMessages = "";   // store sent messages
-        String storedMessages = ""; // store stored messages
-
-        while (running) {
+if(!loggedln){
+    System.out.println("Cannot proceed without successful login . Exiting.");
+    return;
+}
+       boolean running = true;
+       while (running) {
             System.out.println("\n--- Menu ----");
             System.out.println("1) Send messages");
             System.out.println("2) Show recently sent messages");
             System.out.println("3) Quit");
             System.out.print("Choose an option: ");
 
-            String choice = input.nextLine().trim();
+            String choice = scanner.nextLine().trim();
+            
 
             switch (choice) {
                 case "1":
-                    // Loop through each message
-                    for (int i = 1; i <= numMessages; i++) {
-                        System.out.println("\n--- Message " + i + " ---");
-                        System.out.print("Enter recipient number (+27...): ");
-                        String recipient = input.nextLine();
-
-                        System.out.print("Enter your message: ");
-                        String text = input.nextLine();
-
-                        Messages msg = new Messages(i, recipient, text);
-
-                        System.out.println("\n1) Send message");
-                        System.out.println("2) Store message");
-                        System.out.print("Choose an option: ");
-                        String action = input.nextLine().trim();
-
-                        if (action.equals("1")) {
-                            sentMessages += msg.printMessage() + "\n";
-                            System.out.println("Message successfully sent.");
-                        } else if (action.equals("2")) {
-                            storedMessages += msg.storeMessage() + "\n";
-                            System.out.println("Message successfully stored.");
-                        } else {
-                            System.out.println("Invalid choice, message discarded.");
-                        }
-                    }
+                    sendMessagesFlow();
+                    
                     break;
-
-                case "2":
-                    System.out.println("\n--- Sent Messages ---");
-                    if (sentMessages.isEmpty()) {
-                        System.out.println("No messages sent yet.");
-                    } else {
-                        System.out.println(sentMessages);
-                    }
-                    break;
-
-                case "3":
-                    running = false;
-                    System.out.println("Goodbye!");
-                    break;
-
-                default:
-                    System.out.println("Invalid option. Please try again.");
+                   
+                    case"2":
+                        System.out.println("Coming Soon.");
+                        break;
+                        
+                    case "3":
+                        running =false;
+                        
+                        System.out.println("Goodbye");
+                        break;
+                    default:
+                        
+                        System.out.println("Invalid option , please choose 1,2or 3");
             }
-        }
-        input.close();
-    } 
+       }
 }
+private static void sendMessagesFlow(){
+    System.out.print("How many messages would you like to send ?");
+    int numMessages;
+    
+    try{
+        numMessages=Integer.parseInt(scanner.nextLine().trim());
+    }catch (NumberFormatException e){
+        
+        System.out.println("invalid number.");
+        return;
+    }
+    for (int i =0;i <numMessages; i++){
+        System.out.println("\n--- Message " + (i + 1) + " of " + numMessages + " ---");
+        System.out.print("Recipient (e.g. +27718693002): ");
+String recipient = scanner.nextLine();
+System.out.print("Message text: ");
+
+String text = scanner.nextLine();
+
+Message message = new Message(recipient, text);
+
+String lengthCheck = message.checkMessageLength();
+System.out.println(lengthCheck);
+
+if(!lengthCheck.equals("Messages ready to send .")){
+    continue;//skip this message , too long 
+}
+String cellCheck = message.checkRecipientCell();
+System.out.println(cellCheck);
+if(!cellCheck.equals("Cell number successfully captured.")){
+    continue;//skip invalid number 
+}
+System.out.print("Choose : send /store /disregard:");
+String action = scanner.nextLine().trim().toLowerCase();
+
+try{
+    String result =messgae.senrMessage(action);
+    System.out.println(result);
+    manager.addMessage(message);
+    
+    if (action.equals("send")){
+        System.out.println("\nMessage Details:");
+        System.out.println(message.toString());
+    }
+    } catch (IllegalArgumentException e) {
+System.out.println("Invalid choice, message disregarded by default.");
+}
+}
+
+
+System.out.println("\nTotal messages sent so far: " + manager.returnTotalMessages());
+System.out.println(manager.displayReport());
+}
+
+
+                        
+                   
+                   
+                 
+      
+
+                
+        }
+      

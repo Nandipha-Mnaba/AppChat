@@ -1,7 +1,7 @@
-/*
+/
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ *
 
 /**
  *
@@ -115,8 +115,14 @@ public boolean loginUser(string enteredUsername, String enteredPassword){
         public String getFirstName(){
             return firstName;
         }
-        
+        public void SetFirstname(String firstName){
+            this.firstName = firstName;
         }
+        public String getCellPhoneNumber(){
+            return cellPhoneNumber;
+        }
+}
+
 }
     
 
