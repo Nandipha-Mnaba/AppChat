@@ -22,21 +22,23 @@ public class Messages {
         this.recipient     = recipient;
         this.messageText   = messageText ;
         
-public string checkRecipientCell (){
+public String checkRecipientCell (){
     if (recipient == null){
         return "Cell phone number is incorrectly formatted or does not contain an international code ;please correct the number and try again .";
                 
     }
     boolean vaildLength = recipient.length()<=10||(recipient.startsWith("+"))&&
             recipient.length()<=12);
-    boolean validPrefix =recipient.startsWith("+","").length()<=10){
+    boolean validPrefix = recipient.startsWith("+") || recipient.startsWith("0");
+    
+    if (validPrefix && recipient.replace("+", "").length() <= 10) {
     return "Cell number successfully captured.";
 }
     return"Cell phone number is incorrectly formatted or does not contain an international code; please correct the number and try again.";
     
     public String checkMessageLength(){
-        if (messagetext.length()<=250){
-            return "Message reday to send >";
+        if (messageText.length()<=250){
+            return "Message reday to send ";
         }else{
             return"Message exceeds 250 characters by " +(messageText.length()-250)=";please reduce the size"
                     
@@ -44,48 +46,48 @@ public string checkRecipientCell (){
         }
     // hash
     
-    public String createMessagehash(){
+    public String createMessageHash(){
         String idPart = messageld.substring(0,2);
         String[]words + messagetext.trim().split("\\s+");
         String firstWord =words.length>0? words[0]:"";
         String lastWord=words.length> 0 ? words[words.length -1]: "";
-        this messageHash = (idPart+ ":" + messageNumber =":" +firstWord +lastWord).replaceAll("[^A-Za-z0-9:]","")
+        this.messageHash = (idPart+ ":" + messageNumber =":" +firstWord +lastWord).replaceAll("[^A-Za-z0-9:]","")
                 .toUpperCase();
         
         this.messageHash = (idPart + ":" + messageNumber + ":" + stripPunctuation(firstWord) +
                 stripPunctuation(lastWord)).ToUpperCase();
-        return thismessageHash;
+        return this.messageHash;
        
     }
     private String stripPunctuation(String word){
         return word.replaceAll("[^A-Za-z0-9:]","");
     }
     //lets the user choose to send or store or delete message 
-    public String sent Message(String choice){
+    public String sentMessage(String choice){
         switch (choice.toLowerCase()){
             case "send ":
-                    this.flag +"sent";
-                    this.messageNumber =++messageCounter
+                    this.flag ="sent";
+                    this.messageNumber =++messageCounter;
                             createMessageHash();
                             
            return"Message successfully sent."  ;
             case "store":
                 this.flag ="stored";
-                this.messageNumber=++messageCounter;
+                this.messageNumber= ++messageCounter;
                 createMessageHash();
                 return "Message successfully stored.";
-            case "disregard"
-                    this.flag ="disregard"
+            case "disregard":
+                    this.flag ="disregard";
                      return "Press 0 to delete the message."   ;
             default :
-            throw new illegalArgumentException("invalid choice : must be send , store , or disregard.") ;
+            throw new IllegalArgumentException("invalid choice : must be send , store , or disregard.") ;
         }
         }
     //helpers 
     
     private String generateMessageld(){
         Random rand = new Random ();
-        StringBuilder id = newstringBuilder():
+        StringBuilder id = new StringBuilder();
         for (int i =0:i <10;i++){
         id.append(rand.nextInt(10));
     }
@@ -112,15 +114,15 @@ public string checkRecipientCell (){
         public void setRecipient(String recipient){
             this.recipient = recipient;
         }
-        public string GetMessageText(){
+        public String GetMessageText(){
             return messageText;
         }
         public void setMessageText(string messageText){
-            this.messagetext = messageText;
+            this.messageText = messageText;
         }
         public String getMessageHash(){
             if(messageHash==null){
-                createmessagehash();
+                createMessageHash();
             }
             return messageHash;
             }

@@ -14,36 +14,40 @@ public class Login {
     private String cellPhoneNumber;
     private String firstName;
     private String lastName;
+    
+    public static final Pattern CELL_PATTERN =Pattern.complie("^\\+\\d{1,3}\\d{6,9}#$");
 
-    public Login(String username, String password, String cellPhoneNumber,
-                 String firstName, String lastName) {
-        this.username = username;
-        this.password = password;
-        this.cellPhoneNumber = cellPhoneNumber;
+    public Login(String firstName, String lastName)
+                 {
+       
+  
         this.firstName = firstName;
         this.lastName = lastName;
     }
+    
 
     // Username must contain "_" and be no more than 5 characters
-    public boolean checkUserName() {
-        return username != null
-                && username.contains("_")
-                && username.length() <= 5;
+    public boolean checkUserName(String username) {
+        if username == null)return false;
+        return username.contains("_")&& username.length()<=5;
     }
 
     // Password complexity rules
-    public boolean checkPasswordComplexity() {
+    public boolean checkPasswordComplexity(String password) {
         if (password == null || password.length() < 8) return false;
 
-        boolean upper = false, digit = false, special = false;
+   boolean hasCapital = false;
+   boolean hasNumber= false;
+   boolean hasSpecial = false;
+   
 
         for (char c : password.toCharArray()) {
-            if (Character.isUpperCase(c)) upper = true;
-            else if (Character.isDigit(c)) digit = true;
-            else if (!Character.isLetterOrDigit(c)) special = true;
+            if (Character.isUpperCase(c)) hasCapital= true;
+            else if (Character.isDigit(c)) hasNumber = true;
+            else if (!Character.isLetterOrDigit(c)) hasSpecial = true;
         }
 
-        return upper && digit && special;
+        return hasCapital && hasNumber && hasSpecial;
     }
 
     /**
@@ -51,7 +55,7 @@ public class Login {
      * Format: +27 followed by 9 digits
      * Source concept: Java regex pattern matching (String.matches)
      */
-    public boolean checkCellPhoneNumber() {
+    public boolean checkCellPhoneNumber(String cell) {
         return cellPhoneNumber != null
                 && cellPhoneNumber.matches("^\\+27\\d{9}$");
     }
