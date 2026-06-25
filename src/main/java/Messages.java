@@ -61,10 +61,86 @@ public string checkRecipientCell (){
         return word.replaceAll("[^A-Za-z0-9:]","");
     }
     //lets the user choose to send or store or delete message 
+    public String sent Message(String choice){
+        switch (choice.toLowerCase()){
+            case "send ":
+                    this.flag +"sent";
+                    this.messageNumber =++messageCounter
+                            createMessageHash();
+                            
+           return"Message successfully sent."  ;
+            case "store":
+                this.flag ="stored";
+                this.messageNumber=++messageCounter;
+                createMessageHash();
+                return "Message successfully stored.";
+            case "disregard"
+                    this.flag ="disregard"
+                     return "Press 0 to delete the message."   ;
+            default :
+            throw new illegalArgumentException("invalid choice : must be send , store , or disregard.") ;
+        }
+        }
+    //helpers 
     
+    private String generateMessageld(){
+        Random rand = new Random ();
+        StringBuilder id = newstringBuilder():
+        for (int i =0:i <10;i++){
+        id.append(rand.nextInt(10));
+    }
+        return id.toString();
+        
+        //getters / setters 
+        
+        public String getMessageld(){
+            return messageld;
+            
+    }
+        public void setMessageld(String messageld){
+            this.messageld = messageld;
+        }
+        public int getMessageNumber(){
+            return messageNumber;
+        }
+        public void setMessageNumber(int messageNumber){
+         this.messageNumber = messageNumber;
+        }
+        public String getRecipient(){
+            return recipient;
+        }
+        public void setRecipient(String recipient){
+            this.recipient = recipient;
+        }
+        public string GetMessageText(){
+            return messageText;
+        }
+        public void setMessageText(string messageText){
+            this.messagetext = messageText;
+        }
+        public String getMessageHash(){
+            if(messageHash==null){
+                createmessagehash();
+            }
+            return messageHash;
+            }
+        public String getFlag(){
+            return flag;
+        }
+        public void setFlag(String flag){
+            this.flag = flag;
+        }
+        //staic counter 
+        public static void resetcounter(){
+            messageCounter =0;
+        }
+         public String toString(){
+             return"Message ID;"+ messageld
+              + "\nMessage Hash: " + getMessageHash()
++ "\nRecipient: " + recipient
++ "\nMessage: " + messageText;
 }
-
-
-}
-}
+} 
+       
+         
        
