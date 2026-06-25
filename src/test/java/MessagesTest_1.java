@@ -4,19 +4,19 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MessagesTest_1 {
 
     // Sample messages for testing
-    Messages msg1 = new Messages(
+    Message msg1 = new Message(
             1,
             "+27718693002",
             "Hi Mike, can you join us for dinner tonight?"
     );
 
-    Messages msg2 = new Messages(
+    Message msg2 = new Message(
             2,
             "08575975889",
             "Hi Keegan, did you receive the payment?"
     );
 
-    Messages msgLong = new Messages(
+    Message msgLong = new Message(
             3,
             "+27831234567",
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
@@ -69,8 +69,8 @@ public class MessagesTest_1 {
 
     @Test
     public void testMultipleMessageHashes() {
-        Messages[] messages = {msg1, msg2, msgLong};
-        for (Messages m : messages) {
+        Message[] messages = {msg1, msg2, msgLong};
+        for (Message m : messages) {
             String hash = m.createMessageHash();
             assertNotNull(hash);
             assertTrue(hash.length() > 0);
