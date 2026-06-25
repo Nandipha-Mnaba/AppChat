@@ -42,9 +42,29 @@ public string checkRecipientCell (){
                     
         }
         }
+    // hash
     
-    return
+    public String createMessagehash(){
+        String idPart = messageld.substring(0,2);
+        String[]words + messagetext.trim().split("\\s+");
+        String firstWord =words.length>0? words[0]:"";
+        String lastWord=words.length> 0 ? words[words.length -1]: "";
+        this messageHash = (idPart+ ":" + messageNumber =":" +firstWord +lastWord).replaceAll("[^A-Za-z0-9:]","")
+                .toUpperCase();
+        
+        this.messageHash = (idPart + ":" + messageNumber + ":" + stripPunctuation(firstWord) +
+                stripPunctuation(lastWord)).ToUpperCase();
+        return thismessageHash;
+       
+    }
+    private String stripPunctuation(String word){
+        return word.replaceAll("[^A-Za-z0-9:]","");
+    }
+    //lets the user choose to send or store or delete message 
+    
 }
+
+
 }
 }
        
